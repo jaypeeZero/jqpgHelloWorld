@@ -18,6 +18,7 @@ tpl = {
                 url: 'templates/' + name + '.html',
                 data: {},
                 success: function (data){
+                    console.log("success on loading " + name + " template.");
                     that.templates[name] = data;
                     index++;
                     if (index < names.length) {
@@ -29,16 +30,11 @@ tpl = {
                 error: function (msg) {
                     console.log(msg);
                 },
+                complete: function(msg) {
+                    console.log(msg);
+                },
                 async: false
             });
-            /*var data = $("#" + name + "template").html();
-            that.templates[name] = data;
-            index++;
-            if (index < names.length) {
-                loadTemplate(index);
-            } else {
-                callback();
-            }*/
         };
 
         loadTemplate(0);
