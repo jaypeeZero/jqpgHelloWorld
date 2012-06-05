@@ -4,7 +4,11 @@
   <title></title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
+  <!-- For all browsers -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/color.css">
+  <link rel="stylesheet" href="css/grid.css">
+
 
   <!-- Remote Debugging.  Overrides console.log but not during initial app load. -->
   <!--<script src="http://debug.phonegap.com/target/target-script-min.js#belogomouse"></script>-->
@@ -12,7 +16,6 @@
   <!-- Frameworks and Libraries -->
   <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/init.js" type="text/javascript" charset="utf-8"></script> <!-- This MUST be loaded before jQuery Mobile in order to catch the mobileinit event -->
-  <script src="js/jqmobile.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/cordova-1.7.0rc1.js" type="text/javascript" charset="utf-8"></script>
@@ -28,9 +31,72 @@
   <!-- Functions specific to this page -->
 	<script src="js/pages/index.js" type="text/javascript" charset="utf-8"></script>
   </head>
-  <body onload="onBodyLoad()">
-    <div data-role="page">
-      <a href="#login" id="clickme">Click to go to Login</a>
+  <body class="clearfix" onload="onBodyLoad()">
+    <header>This should be a header</header>
+    <div id="main" class="container_12 clearfix" role="main">
+      <!-- / Box -->
+      <div class="box">
+        <div class="boxheading clearfix"><h3><img src="css/images/ajax-loader.gif" alt="" />jQuery elements 2</h3><a class="move"></a></div>
+        <section>
+            <h4>Default jQuery notifications</h4>
+            <div class="notification green">
+              <p>This is a success message.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification red mt15">
+              <p>This is a error message.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification blue mt15">
+              <p>This is a system message.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification yellow mt15">
+              <p>This is a notification.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification mt15">
+              <p>This is a regular notice.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </section>
+      </div>
+      <div class="box">
+        <div class="boxheading clearfix"><h3><img src="css/images/ajax-loader.gif" alt="" />jQuery elements 2</h3><a class="move"></a></div>
+        <section>
+            <h4>Default jQuery notifications</h4>
+            <div class="notification green">
+              <p>This is a success message.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification red mt15">
+              <p>This is a error message.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification blue mt15">
+              <p>This is a system message.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification yellow mt15">
+              <p>This is a notification.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="notification mt15">
+              <p>This is a regular notice.</p>
+              <a class="close hider"></a>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </section>
+      </div>
+      <!-- / End box -->
     </div>
+    <!--<div data-role="page">
+      <a href="#login" id="clickme">Click to go to Login</a>
+      <a href="#projectoverview" id="projectclick">Project Overview</a>
+    </div>
+    <div data-role="page">
+      This is the Project Overview?
+    </div>-->
   </body>
 </html>

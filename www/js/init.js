@@ -9,10 +9,10 @@ $(document).on("mobileinit", function(){
     $.mobile.linkBindingEnabled = false;
     $.mobile.hashListeningEnabled = false;
     $.mobile.pushStateEnabled = false;
+});
 
-    // Remove page from DOM when it's being replaced
-    $('div[data-role="page"]').on('pagehide', function (event, ui) {
-        console.log('hiding a page');
-        $(event.currentTarget).remove();
-    });
+// Remove page from DOM when it's being replaced
+$('div[data-role="page"]').on('pagehide', function (event, ui) {
+    console.log('hiding a page');
+    $(event.currentTarget).remove();
 });

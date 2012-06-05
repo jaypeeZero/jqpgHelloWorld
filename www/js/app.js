@@ -76,23 +76,19 @@ var AppRouter = Backbone.Router.extend({
     },
 
     initialize:function () {
+        var localUser = new User();
+        localUser.email = "jamesw@gmail.com";
+
         $('.back').live('click', function(event) {
             window.history.back();
             return false;
         });
         this.firstPage = true;
-        this.user = user;
-    },
-
-    index: function() {
-        var localUser = this.user;
-        console.log("Loading Index function");
-
-        // TODO : Figure out if they are already logged in
         dataStore.get('my-user', function(user){
             if (user && user.user) {
                 console.log("Found my user!");
                 console.log(user);
+                this.user = user;
             } else {
                 console.log("No User found, creating new one");
                 dataStore.save({ key:"my-user", user:{ email: localUser.email } }, function(record){
@@ -101,6 +97,12 @@ var AppRouter = Backbone.Router.extend({
                 });
             }
         });
+    },
+
+    index: function() {
+        console.log("Loading Index function");
+
+        // TODO : Figure out if they are already logged in
         // TODO : If they are not logged in, display Login/Register page
         // TODO : Otherwise display Project Overview page
     },
