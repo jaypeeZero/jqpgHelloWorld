@@ -2,27 +2,35 @@
 <html>
   <head>
   <title></title>
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
 
-	<script src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/underscore.js"></script>
-	<script type="text/javascript" src="js/backbone.js"></script>
-	<script src="js/jquery.mobile-1.1.0.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="cordova-1.7.0rc1.js"></script>
-	<script type="text/javascript" charset="utf-8">
-	function onBodyLoad() {
-		document.addEventListener("deviceready", onDeviceReady, false);
-	}
-	
-	function onDeviceReady() {
-		navigator.notification.alert('this is a test');
-	}
-	</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
+
+  <!-- Remote Debugging.  Overrides console.log but not during initial app load. -->
+  <!--<script src="http://debug.phonegap.com/target/target-script-min.js#belogomouse"></script>-->
+
+  <!-- Frameworks and Libraries -->
+  <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/init.js" type="text/javascript" charset="utf-8"></script> <!-- This MUST be loaded before jQuery Mobile in order to catch the mobileinit event -->
+  <script src="js/jqmobile.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/cordova-1.7.0rc1.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/lawnchair.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/webkit-sqlite.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/callbacks.js" type="text/javascript" charset="utf-8"></script>
+
+  <!-- Our system files -->
+  <script src="js/models/user.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/views/login.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/app.js" type="text/javascript" charset="utf-8"></script> <!-- This should be loaded AFTER View and Model files -->
+
+  <!-- Functions specific to this page -->
+	<script src="js/pages/index.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body onload="onBodyLoad()">
-	  Test this.
+    <div data-role="page">
+      <a href="#login" id="clickme">Click to go to Login</a>
+    </div>
   </body>
 </html>
