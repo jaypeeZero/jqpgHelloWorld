@@ -1,5 +1,4 @@
 function onBodyLoad() {
-  console.log("Loading Body");
   if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
     document.addEventListener("deviceready", onDeviceReady, false);
   } else {
@@ -8,10 +7,9 @@ function onBodyLoad() {
 }
 
 var onDeviceReady = function() {
-  console.log("Device is Ready");
-  tpl.loadTemplates(['login', 'projectoverview'],
+  tpl.loadTemplates(['login', 'projectoverview', 'splash'],
     function () {
-      console.log("Running App Router");
+      stackNavigator.pushView(SplashPage);
       app = new AppRouter();
 
       // Use a Try/Catch because there is no way to check

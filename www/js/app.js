@@ -18,13 +18,11 @@ tpl = {
 
         var loadTemplate = function (index) {
             var name = names[index];
-            console.log("Loading " + name);
 
             $.ajax({
                 url: 'templates/' + name + '.html',
                 data: {},
                 success: function (data){
-                    console.log("success on loading " + name + " template.");
                     that.templates[name] = data;
                     index++;
                     if (index < names.length) {
@@ -34,10 +32,8 @@ tpl = {
                     }
                 },
                 error: function (msg) {
-                    console.log(msg);
                 },
                 complete: function(msg) {
-                    console.log(msg);
                 },
                 async: false
             });
@@ -48,13 +44,16 @@ tpl = {
 
     // Get template by name from hash of preloaded templates
     get:function (name) {
-        console.log('getting ' + name);
         var temp = this.templates[name];
-        console.log('got it!');
         return temp;
     }
 
 };
+
+// Initializing BackStack.StackNavigator for the #container div
+var stackNavigator = new BackStack.StackNavigator({
+    el: '#container'
+});
 
 var AppRouter = Backbone.Router.extend({
 
@@ -74,7 +73,7 @@ var AppRouter = Backbone.Router.extend({
         UsersDB.getMyUser({
             success: function(user) {
                 router.user = user;
-                router.navigate("login", { trigger:true, replace:false });
+                router.navigate("overview", { trigger:true, replace:false });
             },
             error: function(user) {
                 console.log('It did not find my-user');
@@ -84,19 +83,17 @@ var AppRouter = Backbone.Router.extend({
     },
 
     index: function() {
-        console.log("Loading Index function");
-
         // TODO : Figure out if they are already logged in
         // TODO : If they are not logged in, display Login/Register page
         // TODO : Otherwise display Project Overview page
     },
 
     login: function() {
-        console.log("Loading Login function");
-        this.changePage(new LoginPage({ model: this.user }));
+        stackNavigator.pushView(new LoginPage({ model: this.user }));
     },
 
     projectOverview: function() {
+        stackNavigator.pushView(new OverviewPage({}));
         ProjectsDB.nuke();
         TestProjects.each(function(prj){
             var project = prj.toJSON();
@@ -104,21 +101,6 @@ var AppRouter = Backbone.Router.extend({
                 console.log('saved ' + record.key);
             });
         });
-    },
-
-    changePage:function (page) {
-        console.log('changing page');
-        $(page.el).attr('data-role', 'page');
-        $(page.el).attr('data-dom-cache', 'false');
-        page.render();
-        $('body').append($(page.el));
-        var transition = $.mobile.defaultPageTransition;
-        // We don't want to slide the first page
-        if (this.firstPage) {
-            transition = 'none';
-            this.firstPage = false;
-        }
-        $.mobile.changePage($(page.el), {changeHash:false, transition: transition});
     }
 
 });

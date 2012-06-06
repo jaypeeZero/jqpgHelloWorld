@@ -4,8 +4,6 @@ var LoginPage = Backbone.View.extend({
     },
 
     render: function(e){
-        console.log("rendering login page with the following user");
-        console.log(this.model);
         $(this.el).html(this.template(this.model));
         this.mainView = new LoginView({ el: $("#loginpage", this.el), model: this.model });
         this.mainView.render();
@@ -19,7 +17,6 @@ var LoginView = Backbone.View.extend({
     },
 
     render: function(e){
-        console.log("rendering login view");
         return this;
     }
 });

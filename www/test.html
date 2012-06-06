@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backstack.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+        /**
+         * This is an implementation of a FirstView
+         */
+        var FirstView = Backbone.View.extend({
+
+            events: {
+                'click #btnNext': 'btnNext_clickHandler'
+            },
+
+            render: function() {
+                // Rendering view
+                this.$el.html('<p>FirstView: Hello BackStack!</p><button id="btnNext">Next View</button>');
+                return this;
+            },
+
+            btnNext_clickHandler: function(event) {
+                // Pushing second view to the stack
+                stackNavigator.pushView(SecondView);
+            }
+        });
+
+        /**
+         * This is an implementation of a SecondView
+         */
+        var SecondView = Backbone.View.extend({
+
+            events: {
+                'click #btnPrev': 'btnPrev_clickHandler'
+            },
+
+            initialize:function() {
+                this.on('viewActivate', this.this_viewActivateHandler, this);
+            },
+
+            render: function() {
+                // Rendering view
+                this.$el.html('<p>SecondView: This is a second view!</p><button id="btnPrev">Pop this View</button>');
+                return this;
+            },
+
+            btnPrev_clickHandler: function(event) {
+                // Popping SecondView from the stack with a fade effect
+                var fade = new BackStack.FadeEffect();
+                // You can pass different effects to all StackNavigator functions
+                stackNavigator.popView(fade);
+
+            },
+
+            this_viewActivateHandler: function(event) {
+                alert('SecondView activated!');
+            }
+        });
+
+        var stackNavigator = new BackStack.StackNavigator({ el: '#container' });
+
+        var AppRouter = Backbone.Router.extend({
+            routes:{
+                "":"index",
+                "login":"login"
+            },
+
+            initialize:function(){
+                this.navigate("login", { trigger:true, replace:false });
+            },
+
+            login:function(){
+                stackNavigator.pushView(FirstView);
+            }
+        });
+        var app = new AppRouter();
+        </script>
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+</html>

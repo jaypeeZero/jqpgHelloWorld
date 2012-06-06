@@ -15,8 +15,6 @@ var Users = Backbone.Collection.extend({
 });
 
 var UsersDB = Lawnchair({ name: "users" }, function(store){
-    console.log("Opened users db");
-
     this.before('save', function(record){
     });
 

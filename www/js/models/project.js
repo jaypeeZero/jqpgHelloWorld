@@ -18,8 +18,6 @@ var TestProjects = new Projects([
 // END TESTING //
 
 var ProjectsDB = Lawnchair({ name:"projects" }, function(store){
-    console.log("Opened projects db");
-
     this.before('save', function(record){
     });
 
