@@ -51,15 +51,11 @@ var AppRouter = Backbone.Router.extend({
     routes:{
         "":"index",
         "login":"login",
-        "overview":"projectOverview"
+        "overview":"projectOverview",
+        "notes":"notes"
     },
 
     initialize:function () {
-        $('.back').live('click', function(event) {
-            window.history.back();
-            return false;
-        });
-        this.firstPage = true;
         var router = this; // Allows us to access "this" inside functions
         UsersDB.getMyUser({
             success: function(user) {
@@ -86,13 +82,10 @@ var AppRouter = Backbone.Router.extend({
 
     projectOverview: function() {
         stackNavigator.pushView(new OverviewPage({}));
-        ProjectsDB.nuke();
-        TestProjects.each(function(prj){
-            var project = prj.toJSON();
-            ProjectsDB.save({ key:project.name, data: project }, function(record){
-                console.log('saved ' + record.key);
-            });
-        });
+    },
+
+    notes: function() {
+        stackNavigator.pushView(new NotesPage({}));
     }
 
 });

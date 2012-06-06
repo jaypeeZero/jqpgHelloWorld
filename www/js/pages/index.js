@@ -7,16 +7,9 @@ function onBodyLoad() {
 }
 
 var onDeviceReady = function() {
-  tpl.loadTemplates(['login', 'projectoverview', 'splash'],
+  tpl.loadTemplates(['login', 'projectoverview', 'splash', 'notes'],
     function () {
       stackNavigator.pushView(SplashPage);
-      app = new AppRouter();
-
-      // Use a Try/Catch because there is no way to check
-      // if Backbone.history is already started.
-      try {
-        Backbone.history.start();
-      } catch (err) {}
     });
 };
 
