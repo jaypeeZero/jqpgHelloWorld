@@ -4,6 +4,9 @@
   <title></title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- Frameworks and Libraries -->
   <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -18,13 +21,17 @@
   <!-- Our system files -->
   <script src="js/models/user.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/views/login.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/models/project.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/views/projectoverview.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/app.js" type="text/javascript" charset="utf-8"></script> <!-- This should be loaded AFTER View and Model files -->
 
   <!-- Functions specific to this page -->
 	<script src="js/pages/index.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body class="" onload="onBodyLoad()">
-    <header>This should be a header</header>
+    <div class="navbar navbar-fixed-bottom">
+      <a href="#" class="btn">Login</a>
+    </div>
     <div id="main" class="container_12 clearfix" role="main">
       <!-- / Box -->
       <div class="box">
@@ -55,30 +62,13 @@
         </section>
       </div>
       <div class="box">
-        <div class="boxheading clearfix"><h3>jQuery elements 2</h3><a class="move"></a></div>
+        <div class="boxheading clearfix"><h3>Project Overview</h3><a class="move"></a></div>
         <section>
-            <h4>Default jQuery notifications</h4>
-            <div class="notification green">
-              <p>This is a success message.</p>
-              <a class="close hider"></a>
-            </div>
-            <div class="notification red mt15">
-              <p>This is a error message.</p>
-              <a class="close hider"></a>
-            </div>
-            <div class="notification blue mt15">
-              <p>This is a system message.</p>
-              <a class="close hider"></a>
-            </div>
-            <div class="notification yellow mt15">
-              <p>This is a notification.</p>
-              <a class="close hider"></a>
-            </div>
-            <div class="notification mt15">
-              <p>This is a regular notice.</p>
-              <a class="close hider"></a>
-            </div>
-            <div class="clear">&nbsp;</div>
+            <h4>Icons</h4>
+            <a href="#" class="btn_icon square">
+              <img src="css/images/ajax-loader.gif" />
+              <span>This is a test</span>
+            </a>
         </section>
       </div>
       <!-- / End box -->

@@ -1,3 +1,9 @@
+// Remove page from DOM when it's being replaced
+$('div[data-role="page"]').on('pagehide', function (event, ui) {
+    console.log('hiding a page');
+    $(event.currentTarget).remove();
+});
+
 /// TEMPLATING ///
 tpl = {
 
@@ -50,51 +56,29 @@ tpl = {
 
 };
 
-var dataStore = new Lawnchair({ name: 'users' }, function(store){
-    console.log("Lawnchair opened");
-
-    this.before('save', function(record){
-        console.log("About to save this record");
-        console.log(record);
-    });
-
-    this.after('save', function(record){
-        console.log("Just saved this record");
-        console.log(record);
-    });
-
-});
-
-var user = new User();
-user.email = "jamesw@gmail.com";
-
 var AppRouter = Backbone.Router.extend({
 
     routes:{
         "":"index",
-        "login":"login"
+        "login":"login",
+        "overview":"projectOverview"
     },
 
     initialize:function () {
-        var localUser = new User();
-        localUser.email = "jamesw@gmail.com";
-
         $('.back').live('click', function(event) {
             window.history.back();
             return false;
         });
         this.firstPage = true;
-        dataStore.get('my-user', function(user){
-            if (user && user.user) {
-                console.log("Found my user!");
-                console.log(user);
-                this.user = user;
-            } else {
-                console.log("No User found, creating new one");
-                dataStore.save({ key:"my-user", user:{ email: localUser.email } }, function(record){
-                    console.log("Completed save of");
-                    console.log(record);
-                });
+        var router = this; // Allows us to access "this" inside functions
+        UsersDB.getMyUser({
+            success: function(user) {
+                router.user = user;
+                router.navigate("login", { trigger:true, replace:false });
+            },
+            error: function(user) {
+                console.log('It did not find my-user');
+                router.navigate("login", { trigger:true, replace:false });
             }
         });
     },
@@ -110,6 +94,16 @@ var AppRouter = Backbone.Router.extend({
     login: function() {
         console.log("Loading Login function");
         this.changePage(new LoginPage({ model: this.user }));
+    },
+
+    projectOverview: function() {
+        ProjectsDB.nuke();
+        TestProjects.each(function(prj){
+            var project = prj.toJSON();
+            ProjectsDB.save({ key:project.name, data: project }, function(record){
+                console.log('saved ' + record.key);
+            });
+        });
     },
 
     changePage:function (page) {

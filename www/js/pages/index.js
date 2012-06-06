@@ -3,13 +3,13 @@ function onBodyLoad() {
   if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
     document.addEventListener("deviceready", onDeviceReady, false);
   } else {
-    onDeviceReady(); //this is the browser
+    onDeviceReady(); //this is a desktop browser
   }
 }
 
 var onDeviceReady = function() {
   console.log("Device is Ready");
-  tpl.loadTemplates(['login'],
+  tpl.loadTemplates(['login', 'projectoverview'],
     function () {
       console.log("Running App Router");
       app = new AppRouter();

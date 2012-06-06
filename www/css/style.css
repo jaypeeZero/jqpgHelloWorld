@@ -13,11 +13,14 @@ body{
     position: relative;
 }
 
-.clearfix {
-  zoom: 1;
-}
-
 .box .boxheading {
+  background: #212121;
+  background-image: url(images/gradient2.png);
+  background-repeat: repeat-x;
+  background-position: 50% 50%;
+  border: 1px solid #212121;
+  color: white;
+  box-shadow: 0 1px 1px white inset;
   display: block;
   padding: 15px;
   font-size: 18px;
@@ -47,3 +50,28 @@ body{
   color: #656565;
   border-radius: 0 0 4px 4px;
 }
+
+a:focus {
+  text-decoration: none;
+  outline: 0;
+}
+a:hover {
+  color: #d5d5d5;
+}
+
+/* Buttons with icons */
+a.btn_icon {border-radius: 4px;display: inline-block; border: 1px solid #c7c7c7;cursor: pointer;background: -moz-linear-gradient(#ffffff, #f6f6f6); background: -webkit-gradient(linear,left top, left bottom, from(#ffffff), to(#f6f6f6));}
+a.btn_icon img {padding: 5px 7px;}
+a.btn_icon:hover {background: #f5f5f5;}
+a.btn_icon:active, body #main .btn.small:active, .square:active {box-shadow: 0 0 5px #b8b8b8 inset;}
+
+a.btn_icon.textright img {padding: 7px 9px;float: left;}
+a.btn_icon span {font-size: 14px; font-size: 1.4rem;}
+a.btn_icon span.l {padding: 10px 10px;float: left;border-left: 1px solid #d8d8d8;}
+a.btn_icon span.title {display: block; font-weight: bold; line-height: 0.8;font-size: 14px; font-size: 1.4rem;}
+a.btn_icon span.subtitle{margin-top:4px;display:block;}
+
+a.btn_icon.square {text-align: center; padding: 5px 15px 10px 15px;font-weight: bold;}
+a.btn_icon.square img {margin: 0 auto;}
+a.btn_icon.square span {display: block;font-size: 14px; font-size: 1.4rem;}
+.btn_icon:hover{box-shadow: 0 0 5px #b8b8b8;outline: 0;}

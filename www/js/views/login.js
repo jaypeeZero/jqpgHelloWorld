@@ -1,15 +1,6 @@
 var LoginPage = Backbone.View.extend({
     initialize: function(){
-      try {
-        var temp = tpl.get("login");
-        console.log("temp is filled");
-        this.template = _.template(temp);
-        //this.template = _.template(tpl.get("login"));
-        console.log("Got Login Template");
-        console.log(this.template);
-      } catch (ex) {
-        console.log(ex);
-      }
+      this.template = _.template(tpl.get("login"));
     },
 
     render: function(e){
