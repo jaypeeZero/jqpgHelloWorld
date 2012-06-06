@@ -1,13 +1,13 @@
 var OverviewPage = Backbone.View.extend({
-    initialize: function() {
-    },
-    render: function() {}
-});
+    el: "#container",
 
-var NotesView = Backbone.View.extend({
-    initialize:function() {},
-    render:function() {
-        console.log('rendering Notes View');
+    initialize: function() {
+        this.template = _.template(tpl.get("projectoverview"));
+
+        // Get the default Project for this user
+    },
+    render: function() {
+        $(this.el).html(this.template({}));
         return this;
     }
 });

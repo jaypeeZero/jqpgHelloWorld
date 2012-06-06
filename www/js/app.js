@@ -18,25 +18,16 @@ tpl = {
 
         var loadTemplate = function (index) {
             var name = names[index];
+            console.log('getting ' + name);
+            var data = $.ajax({ type: 'GET', url: 'templates/' + name + '.html', async: false }).responseText;
 
-            $.ajax({
-                url: 'templates/' + name + '.html',
-                data: {},
-                success: function (data){
-                    that.templates[name] = data;
-                    index++;
-                    if (index < names.length) {
-                        loadTemplate(index);
-                    } else {
-                        callback();
-                    }
-                },
-                error: function (msg) {
-                },
-                complete: function(msg) {
-                },
-                async: false
-            });
+            that.templates[name] = data;
+            index++;
+            if (index < names.length) {
+                loadTemplate(index);
+            } else {
+                callback();
+            }
         };
 
         loadTemplate(0);
@@ -72,6 +63,7 @@ var AppRouter = Backbone.Router.extend({
         var router = this; // Allows us to access "this" inside functions
         UsersDB.getMyUser({
             success: function(user) {
+                console.log('got here?');
                 router.user = user;
                 router.navigate("overview", { trigger:true, replace:false });
             },

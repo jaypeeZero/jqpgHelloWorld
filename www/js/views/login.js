@@ -1,26 +1,16 @@
 var LoginPage = Backbone.View.extend({
+  el: $("#container"),
+
     initialize: function(){
       this.template = _.template(tpl.get("login"));
     },
 
     render: function(e){
-        $(this.el).html(this.template(this.model));
-        this.mainView = new LoginView({ el: $("#loginpage", this.el), model: this.model });
-        this.mainView.render();
-        return this;
+      console.log("Rendering login view");
+      $(this.el).html(this.template(this.model));
+      return this;
     }
 });
-
-var LoginView = Backbone.View.extend({
-
-    initialize: function(){
-    },
-
-    render: function(e){
-        return this;
-    }
-});
-
 /*
 $("#loginpage").live('pageinit', function (event, ui) {
   var confirmpassword = $('#confirm');
